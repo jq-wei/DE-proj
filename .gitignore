@@ -1,0 +1,25 @@
+.terraform/
+
+# Terraform plan files
+*.tfplan
+
+# Sensitive variable files (if used)
+*.tfvars
+*.tfvars.json
+
+# Override files (used locally)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash logs
+crash.log
+
+# Ignore terraform.lock.hcl if you want flexibility with provider versions
+# But *do not* ignore this file if you're working in a team and want consistent versions
+# terraform.lock.hcl
+
+
+*.tfstate
+*.tfstate.backup
