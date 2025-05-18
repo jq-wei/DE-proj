@@ -23,3 +23,9 @@ crash.log
 
 *.tfstate
 *.tfstate.backup
+
+*.log
+*.db
+*.json.generated
+
+/logs
