@@ -67,7 +67,7 @@ resource "aws_security_group" "web_sg" {
 
 resource "aws_instance" "web-server-instance" {
   ami = "ami-084568db4383264d4"
-  instance_type = "t3.small" #"t2.micro"
+  instance_type = "t3.medium" #"t2.micro"
   availability_zone = "us-east-1a" # same as subnet
   key_name = "main-key"
 
