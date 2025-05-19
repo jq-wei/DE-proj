@@ -2,6 +2,16 @@ provider "aws" {
   region = "us-east-1"
 }
 
+# create a s3 bucket
+
+resource "aws_s3_bucket" "airflow_bucket" {
+  bucket = "weatherapiairflow-12445"  # Replace with a globally unique name
+  
+  tags = {
+    Name = "airflow-test"
+  }
+}
+
 
 # data source to ge the default VPC
 data "aws_vpc" "default" {
@@ -77,6 +87,9 @@ resource "aws_instance" "web-server-instance" {
     Name = "airflow-server"
   }
 }
+
+
+
 
 
 
