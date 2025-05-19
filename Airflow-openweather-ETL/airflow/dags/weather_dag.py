@@ -25,6 +25,14 @@ print(f"API_key: {API_KEY}")
 city = "Portland"
 url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}"
 
+def load_aws_credentials(filepath='/home/ubuntu/airflow/dags/aws_credentials.json'):
+    """Securely load AWS credentials from JSON file"""
+    try:
+        with open(filepath) as f:
+            return json.load(f)
+    except Exception as e:
+        raise Exception(f"Failed to load credentials: {str(e)}")
+
 def kelvin_to_fahrenheit(temp_in_kelvin):
     temp_in_fahrenheit = (temp_in_kelvin - 273.15) * (9/5) + 32
     return temp_in_fahrenheit
@@ -59,12 +67,12 @@ def transform_load_data(task_instance):
                         }
     transformed_data_list = [transformed_data]
     df_data = pd.DataFrame(transformed_data_list)
-    aws_credentials = {"key": "xxxxxxxxx", "secret": "xxxxxxxxxx", "token": "xxxxxxxxxxxxxx"}
+    aws_credentials = load_aws_credentials() #{"key": "xxxxxxxxx", "secret": "xxxxxxxxxx", "token": "xxxxxxxxxxxxxx"}
 
     now = datetime.now()
     dt_string = now.strftime("%d%m%Y%H%M%S")
     dt_string = 'current_weather_data_portland_' + dt_string
-    df_data.to_csv(f"{dt_string}.csv", index=False) #, storage_options=aws_credentials)
+    df_data.to_csv(f"s3://weatherapiairflow-12445/{dt_string}.csv", index=False, storage_options=aws_credentials)
 
 
 
