@@ -29,3 +29,9 @@ crash.log
 *.json.generated
 
 /logs
+
+
+aws_credentials.json
+*credentials*
+
+*.env

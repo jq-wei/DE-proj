@@ -88,7 +88,19 @@ resource "aws_instance" "web-server-instance" {
   }
 }
 
+# create a new instance for airflow-snowflake proj.
+resource "aws_instance" "snowflake-airflow" {
+  ami = "ami-084568db4383264d4"
+  instance_type = "t3.medium" #"t2.micro"
+  availability_zone = "us-east-1a" # same as subnet
+  key_name = "main-key"
 
+  vpc_security_group_ids = [ aws_security_group.web_sg.id ]
+
+  tags = {
+    Name = "snowflake-airflow-server"
+  }
+}
 
 
 
