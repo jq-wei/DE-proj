@@ -28,5 +28,10 @@ use role dbt_role; -- switch to the newly created role
 
 create schema dbt_db.dbt_schema;
 
+
+-- delete all the resourses when done
+drop warehouse if exists dbt_wh;
+drop database if exists dbt_db;
+drop role if exists dbt_role;
 ```
 
