@@ -35,3 +35,30 @@ drop database if exists dbt_db;
 drop role if exists dbt_role;
 ```
 
+# create dbt connection to snowflake
+
+use `dbt init`. This will create a project named as e.g. data_pipeline, and a folder in the same name. 
+
+# update dbt_project.yml
+set the model as 
+```
+models:
+  data_pipeline:
+    # Config indicated by + and applies to all files under models/example/
+    staging:
+      +materialized: view
+      snowflake_warehouse: dbt_wh
+    marts:
+      +materialized: table
+      snowflake_warehouse: dbt_wh
+```
+which tells snowflake to materialize all the model in staging/ as view, and all the model in marts/ as table.
+
+In this yml, `model-paths: ["models"]` indicates where to look for the model. Model folder contains: SQL logic, source dataset, staging file. 
+
+Good practice: separate stage files, which is one to one source code, from the marts files.
+
+
+# create packages.yml
+install the packages, using `dbt deps`. 
+
