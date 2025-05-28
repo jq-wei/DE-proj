@@ -60,5 +60,25 @@ Good practice: separate stage files, which is one to one source code, from the m
 
 
 # create packages.yml
-install the packages, using `dbt deps`. 
+install the packages, using `dbt deps`. This will create a new folder named as 'dbt_packages/'
+
+# marcos
+
+For usable marcos.
+
+# seeds
+
+For static files/data.
+
+# snapshots
+
+For creating incremental models.
+
+# tests
+
+For singular, or generic data test.
+
+# Step up project
+
+## step 1. create source and staging tables
 

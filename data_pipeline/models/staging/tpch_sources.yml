@@ -1,0 +1,5 @@
+version: 2
+
+sources:
+  - name: tpch 
+    database: snowflake_sample_data
