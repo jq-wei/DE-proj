@@ -33,8 +33,8 @@ models:
   data_pipeline:
     # Config indicated by + and applies to all files under models/example/
     staging:
-      +materialized: view
+      +materialized: view  # `dbt run` with staging creates views
       snowflake_warehouse: dbt_wh
     marts:
-      +materialized: table
+      +materialized: table # `dbt run` with marts creates tables
       snowflake_warehouse: dbt_wh
