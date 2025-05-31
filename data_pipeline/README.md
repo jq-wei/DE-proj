@@ -46,3 +46,8 @@ aggregate line_items table to create some fact tables.
 This one goes into /marts  models.
 
 First run `dbt run -s stg_tpch_orders` then `dbt run -s int_order_items`
+
+
+### Marco
+
+Marco funcs are to reuse bussiness logic.
