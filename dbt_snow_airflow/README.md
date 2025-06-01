@@ -82,3 +82,6 @@ For singular, or generic data test.
 
 ## step 1. create source and staging tables
 
+## exe 
+`dbt run`
+

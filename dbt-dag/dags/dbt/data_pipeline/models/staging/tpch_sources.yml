@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: tpch 
+    database: snowflake_sample_data  # snowflake_sample_data has tpch_sf1, sf_10, etc
+    schema: tpch_sf1
+    tables:
+      - name: orders   # one of the table in the database
+        columns:
+          - name: O_ORDERKEY
+            tests: # this is a generic data test
+              - unique
+              - not_null
+      - name: lineitem
+        columns: 
+          - name: L_ORDERKEY
+            tests:
+              - relationships:  # the following generic test is to test if L_ORDERKEY is a foreign key of table orders
+                  to: source('tpch', 'orders')  # by ensuring every L_ORDERKEY in the lineitem table matches an existing O_ORDERKEY in the orders table
+                  field: O_ORDERKEY
+      
